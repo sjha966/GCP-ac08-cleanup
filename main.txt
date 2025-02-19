@@ -1,0 +1,11 @@
+module "detach_service_project" {
+  source = "./detachsrvprojectfromhostproject"
+  host_project = var.host_project
+  service_project = var.service_project
+}
+
+module "delete_shared_vpc_subnet" {
+  source = "./deletesharedvpcsubnet"
+  subnet_name = var.subnet_name
+  region = var.region
+}
