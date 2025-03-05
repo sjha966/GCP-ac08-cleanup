@@ -1,7 +1,15 @@
-output "service_project_detached" {
+/*output "service_project_detached" {
   value = "Service project ${var.service_project} has been detached from host project ${var.host_project}."
 }
 
 output "subnet_deleted" {
   value = "Subnet ${var.subnet_name} in region ${var.region} has been deleted."
+}*/
+
+output "service_projects_detached" {
+  value = [for project in var.service_projects : "Service project ${project} has been detached from host project ${var.host_project}."]
+}
+
+output "subnets_deleted" {
+  value = [for subnet in var.subnets : "Subnet ${subnet.name} in region ${subnet.region} has been deleted."]
 }
