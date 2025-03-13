@@ -4,32 +4,26 @@ host_project    = "ica-shared-vpc-host-project"
 #region       = "europe-west4"
 
 service_projects = [
-  "af35-p-aph-ml-mvp-ana-75e7",
-  "af35-p-aph-ml-mvp-ppr-9996",
-  "af35-p-aph-ml-mvp-prd-149a",
-  "af35-p-aph-reme-ana-99b4",
-  "af35-p-aph-reme-prd-e3c9"
+  "ac16-p-ingbatch-prd-8fb6",
+  "ac16-p-ingstream-prd",
+  "ac16-p-sharedcache-prd-a95a",
+  
 ]
 
 subnets = [
   {
-    name   = "vpc-prod-shared-prod-euw4-af35-p-aph-ml-mvp-ana-75e7-subnet29"
+    name   = "vpc-prod-shared-prod-euw4-ac16-p-ingbatch-prd-8fb6-subnet-005"
     region = "europe-west4"
   },
-  {
-    name   = "vpc-prod-shared-prod-euw4-af35-p-aph-ml-mvp-ppr-9996-subnet30"
+ 
+ {
+    name   = "vpc-prod-shared-prod-euw4-ac16-p-ingstream-prd-subnet-002"
     region = "europe-west4"
   },
-  {
-    name   = "vpc-prod-shared-prod-euw4-af35-p-aph-ml-mvp-prd-149a-subnet-26"
+
+   {
+    name   = "vpc-prod-shared-prod-euw4-ac16-p-sharedcache-prd-a95a-subnet-15"
     region = "europe-west4"
   },
-  {
-    name   = "vpc-prod-shared-prod-euw4-af35-p-aph-reme-ana-99b4-subnet45"
-    region = "europe-west4"
-  },
-  {
-    name   = "vpc-prod-shared-prod-euw4-af35-p-aph-reme-prd-e3c9-subnet46"
-    region = "europe-west4"
-  }
+  
 ]
