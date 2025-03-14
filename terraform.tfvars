@@ -4,10 +4,8 @@ host_project    = "ica-shared-vpc-host-project"
 #region       = "europe-west4"
 
 service_projects = [
-  "ac16-p-ingbatch-prd-8fb6",
-  "ac16-p-ingstream-prd",
-  "ac16-p-sharedcache-prd-a95a",
-  
+  "ad17-p-bank-shared-8c56",
+   
 ]
 
 subnets = [
