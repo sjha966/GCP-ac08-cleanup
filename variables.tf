@@ -26,6 +26,14 @@ variable "subnets" {
   }))
   }
 
+variable "vpc_connectors" {
+  description = "List of VPC connectors to delete"
+  type        = list(object({
+    name   = string
+    region = string
+  }))
+}
+
 /*variable "region" {
   description = "The region where the subnet is located"
   type        = string

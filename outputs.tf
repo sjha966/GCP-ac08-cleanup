@@ -13,3 +13,6 @@ output "service_projects_detached" {
 output "subnets_deleted" {
   value = [for subnet in var.subnets : "Subnet ${subnet.name} in region ${subnet.region} has been deleted."]
 }
+output "vpc_connectors_deleted" {
+  value = [for connector in var.vpc_connectors : "VPC connector ${connector.name} in region ${connector.region} has been deleted."]
+}
