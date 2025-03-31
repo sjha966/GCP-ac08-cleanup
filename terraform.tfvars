@@ -4,16 +4,16 @@ host_project    = "ica-shared-vpc-host-project"
 #region       = "europe-west4"
 
 service_projects = [
-  "ab73-np-outboundap-dev",
-  "ab73-np-sharedcache-tcm",
-   
+  "ae40-np-prd-self-srv-seed-4b5d",
+
 ]
 
 subnets = [
   {
-    name   = "vpc-prod-shared-euw4-ab73-np-outboundap-dev-subnet-032"
-    region = "europe-west1"
-  }, 
+    name   = "vpc-prod-shared-euw4-ae40-np-prd-self-srv-seed-4b5d-subnet-035"
+    region = "europe-west4"
+  },  
+
 ]
 
 vpc_connectors = [
@@ -21,20 +21,16 @@ vpc_connectors = [
     name   = "ac61-p-144201992812-slac0"
     region = "europe-west3"
   },
+]
+
+vms = [
   {
-    name   = "af34-np-426033393516-conn"
-    region = "europe-west3"
+    name   = "instance-1"
+    zone   = "europe-west4-a"
   },
   {
-    name   = "af35-p-106471940047-conn"
-    region = "europe-west3"
+    name   = "kafka-testvm"
+    zone   = "europe-west4-b"
   },
-  {
-    name   = "ac22-np-343214340988-conn"
-    region = "europe-west4"
-  },
-  {
-    name   = "ac80-p-722054454905-conn"
-    region = "europe-west4"
-  },
+  
 ]

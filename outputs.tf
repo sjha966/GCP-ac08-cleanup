@@ -16,3 +16,7 @@ output "subnets_deleted" {
 output "vpc_connectors_deleted" {
   value = [for connector in var.vpc_connectors : "VPC connector ${connector.name} in region ${connector.region} has been deleted."]
 }
+
+output "vms_deleted" {
+  value = [for vm in var.vms : "VM ${vm.name} in zone ${vm.zone} has been deleted if it was stopped."]
+}

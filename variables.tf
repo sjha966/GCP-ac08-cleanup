@@ -34,6 +34,15 @@ variable "vpc_connectors" {
   }))
 }
 
+variable "vms" {
+  description = "List of VMs to check and delete if stopped"
+  type        = list(object({
+    name = string
+    zone = string
+  }))
+}
+
+
 /*variable "region" {
   description = "The region where the subnet is located"
   type        = string
