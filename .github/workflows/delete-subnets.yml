@@ -1,0 +1,27 @@
+name: Delete GCP Subnets
+on:
+  workflow_dispatch:  # Allows manual triggering
+jobs:
+  delete-subnets:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Authenticate with GCP
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+    - name: Set up gcloud CLI
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ica-shared-vpc-host-project
+    - name: Delete first subnet
+      run: |
+        gcloud compute networks subnets delete vpc-prod-shared-ver-euw4-temp-testsubnet-01 \
+          --region=europe-west4 \
+          --project=ica-shared-vpc-host-project
+    - name: Delete second subnet
+      run: |
+        gcloud compute networks subnets delete vpc-prod-shared-prod-euw4-subnet-0001 \
+          --region=europe-west4 \
+          --project=ica-shared-vpc-host-project

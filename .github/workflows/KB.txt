@@ -1,0 +1,75 @@
+Let’s Create a Simple Workflow
+
+To get you started, we’ll make a basic workflow that runs whenever you push code to your repository. It will just print "Hello, World!" so you can see how it works.
+
+Here’s what you’ll do:
+
+    Create a Repository: If you don’t have one, go to GitHub, click the "+" in the top-right corner, and select "New repository." Name it something like learn-github-actions and make it public or private—your choice.
+    Add a Workflow File: In your repository, create a folder called .github/workflows/ and add a file named hello-world.yml.
+    Add the Code: Use the YAML below.
+    Push and Watch: Commit the file and push it to GitHub. Then check the "Actions" tab to see it run.
+
+How to Add It
+
+    In your GitHub repository, click "Add file" > "Create new file".
+    Name it .github/workflows/hello-world.yml.
+    Copy and paste the YAML content above.
+    Click "Commit new file" (use the default branch, usually main).
+    Go to the "Actions" tab in your repository. You’ll see "Hello World" listed. Click it, then click the latest run to see the output: "Hello, World!".
+
+What This Does
+
+    name: Names your workflow so you can recognize it.
+    on: [push]: Tells GitHub to run this whenever you push code.
+    jobs: Defines what to do. Here, we have one job called build.
+    runs-on: ubuntu-latest: Runs the job on a fresh Ubuntu virtual machine.
+    steps: Lists the tasks. We have one step that runs a simple echo command.
+
+Verify It Works
+
+After committing, go to the "Actions" tab. You should see your workflow run automatically (because you pushed the file). Click on the run, expand the "Say Hello" step, and confirm it printed "Hello, World!".
+
+Step 2: Set Up GCP Credentials Securely
+Why This Matters
+
+Your GitHub Actions workflow needs permission to interact with your GCP project. To keep things secure, we’ll use a service account—a special account for applications, not people. This ensures your personal credentials stay safe.
+What You’ll Do
+
+    Create a service account in GCP with the right permissions.
+    Generate a JSON key for that account.
+    Store the key securely in GitHub Secrets.
+
+Detailed Steps
+
+1. Create a Service Account in GCP
+
+    Open the GCP Console.
+    Select your project (the one with the subnets you want to manage).
+    Go to IAM & Admin > Service Accounts.
+    Click Create Service Account.
+    Name it something like github-actions-deleter.
+    Click Create.
+    Assign it the Compute Network Admin role (this lets it delete subnets).
+    Click Continue, then Done. No need to add users or keys yet.
+
+2. Generate a Key for the Service Account
+
+    On the Service Accounts page, locate your new account and click it.
+    Go to the Keys tab.
+    Click Add Key > Create new key.
+    Select JSON as the key type.
+    Click Create. A JSON file will download—keep it safe!
+
+3. Store the Key in GitHub Secrets
+
+    Head to your GitHub repository.
+    Navigate to Settings > Secrets and variables > Actions.
+    Click New repository secret.
+    Name the secret GOOGLE_CREDENTIALS.
+    Open the downloaded JSON file, copy its entire contents, and paste it into the value field.
+    Click Add secret.
+
+Verify
+
+Your key is now securely stored in GitHub Secrets. You can use it in your workflows without exposing it.
+
