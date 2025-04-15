@@ -73,3 +73,29 @@ Verify
 
 Your key is now securely stored in GitHub Secrets. You can use it in your workflows without exposing it.
 
+It looks like you've successfully added your GCP credentials to GitHub Secrets under the name GOOGLE_CREDENTIALS. Now, I'll provide you with a GitHub Actions workflow file to delete the specified shared VPC subnets from your test GCP project. Below is the complete workflow file you can add to your repository.
+delete-subnets.yml
+yaml
+How to Use This Workflow
+
+    Add the File to Your Repository:
+        In your GitHub repository, create a folder called .github/workflows/ if it doesn’t already exist.
+        Create a new file named delete-subnets.yml and paste the content above into it.
+        Commit and push the file to your repository.
+    Run the Workflow:
+        Go to the "Actions" tab in your GitHub repository.
+        Find the "Delete GCP Subnets" workflow in the list.
+        Click "Run workflow" and confirm the action.
+        Monitor the workflow logs to ensure it completes successfully.
+    Verify the Deletion:
+        After the workflow finishes, check your GCP project to confirm the subnets vpc-prod-shared-ver-euw4-temp-testsubnet-01 and vpc-prod-shared-prod-euw4-subnet-0001 are deleted.
+        You can verify this in the GCP Console or by running:
+        bash
+
+        gcloud compute networks subnets list --project=ica-shared-vpc-host-project
+
+Important Notes
+
+    The workflow uses the GOOGLE_CREDENTIALS secret you added, so no further authentication setup is needed.
+    Ensure the service account tied to GOOGLE_CREDENTIALS has permissions to delete subnets (e.g., Compute Network Admin role).
+    The workflow_dispatch trigger means you must manually start the workflow, which is safer for destructive actions like this.
