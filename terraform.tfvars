@@ -1,36 +1,56 @@
-host_project    = "ica-shared-vpc-host-project"
+host_project = "ica-shared-vpc-host-project"
 #service_project = "af35-p-aph-ml-mvp-ana-75e7"
 #subnet_name  = "vpc-prod-shared-prod-euw4-af35-p-aph-ml-mvp-ana-75e7-subnet29"
 #region       = "europe-west4"
 
 service_projects = [
-  "ae40-np-prd-self-srv-seed-4b5d",
+  "aa63-p-recengine-cr-ver-6ebc",
+  "aa63-p-recengine-crprod-7cff",
+  "aa63-p-recengine-prod-db4b",
 
 ]
 
 subnets = [
   {
-    name   = "vpc-prod-shared-euw4-ae40-np-prd-self-srv-seed-4b5d-subnet-035"
+    name   = "vpc-prod-shared-prod-euw4-aa63-p-recengine-cr-ver-6ebc-subnet54"
+    region = "europe-west3"
+  },
+
+  {
+    name   = "vpc-prod-shared-prod-euw4-aa63-p-recengine-crprod-7cff-subnet55"
+    region = "europe-west3"
+  },
+
+  {
+    name   = "vpc-prod-shared-prod-euw4-aa63-p-recengine-prod-db4b-subnet-014"
     region = "europe-west4"
-  },  
+  },
 
 ]
 
 vpc_connectors = [
   {
-    name   = "ac61-p-144201992812-slac0"
+    name   = "aa63-np-connector"
     region = "europe-west3"
   },
+
+
+  {
+    name   = "aa63-p-recengine-connecto"
+    region = "europe-west3"
+  },
+
+  {
+    name   = "vpc-recengine-prod-connec"
+    region = "europe-west3"
+  },
+
 ]
 
 vms = [
   {
-    name   = "instance-1"
-    zone   = "europe-west4-a"
+    name = "instance-1"
+    zone = "europe-west4-a"
   },
-  {
-    name   = "kafka-testvm"
-    zone   = "europe-west4-b"
-  },
-  
+
 ]

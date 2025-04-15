@@ -20,15 +20,15 @@ variable "service_projects" {
 
 variable "subnets" {
   description = "List of subnets to delete"
-  type        = list(object({
+  type = list(object({
     name   = string
     region = string
   }))
-  }
+}
 
 variable "vpc_connectors" {
   description = "List of VPC connectors to delete"
-  type        = list(object({
+  type = list(object({
     name   = string
     region = string
   }))
@@ -36,7 +36,7 @@ variable "vpc_connectors" {
 
 variable "vms" {
   description = "List of VMs to check and delete if stopped"
-  type        = list(object({
+  type = list(object({
     name = string
     zone = string
   }))
