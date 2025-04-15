@@ -1,0 +1,35 @@
+name: Delete Stopped VMs
+on:
+  workflow_dispatch:
+jobs:
+  delete-vms:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Authenticate with GCP
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+    - name: Set up gcloud CLI
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ica-shared-vpc-host-project
+    - name: Check and delete prod-euw4-azure-vpn-rt-001
+      run: |
+        STATUS=$(gcloud compute instances describe prod-euw4-azure-vpn-rt-001 --zone=europe-west4-a --format="value(status)")
+        if [ "$STATUS" == "TERMINATED" ]; then
+          gcloud compute instances delete prod-euw4-azure-vpn-rt-001 --zone=europe-west4-a --quiet
+          echo "Deleted prod-euw4-azure-vpn-rt-001"
+        else
+          echo "prod-euw4-azure-vpn-rt-001 is not stopped, status: $STATUS"
+        fi
+    - name: Check and delete prod-euw4-b-azure-vpn-rt-002
+      run: |
+        STATUS=$(gcloud compute instances describe prod-euw4-b-azure-vpn-rt-002 --zone=europe-west4-b --format="value(status)")
+        if [ "$STATUS" == "TERMINATED" ]; then
+          gcloud compute instances delete prod-euw4-b-azure-vpn-rt-002 --zone=europe-west4-b --quiet
+          echo "Deleted prod-euw4-b-azure-vpn-rt-002"
+        else
+          echo "prod-euw4-b-azure-vpn-rt-002 is not stopped, status: $STATUS"
+        fi
