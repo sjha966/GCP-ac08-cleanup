@@ -1,0 +1,20 @@
+---
+- name: Delete GCP Subnets
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Delete subnet vpc-prod-shared-prod-euw4-aa27-p-ingstream-prd-7efb-subnet-23
+      gcp_compute_subnetwork:
+        name: "vpc-prod-shared-prod-euw4-aa27-p-ingstream-prd-7efb-subnet-23"
+        region: "europe-west4"
+        state: "absent"
+        auth_kind: "serviceaccount"
+        service_account_file_content: "{{ lookup('env', 'GOOGLE_CREDENTIALS') }}"
+
+    - name: Delete subnet vpc-prod-shared-dev-euw4-aa27-p-ingstream-ver-b36e-subnet-46
+      gcp_compute_subnetwork:
+        name: "vpc-prod-shared-dev-euw4-aa27-p-ingstream-ver-b36e-subnet-46"
+        region: "europe-west4"
+        state: "absent"
+        auth_kind: "serviceaccount"
+        service_account_file_content: "{{ lookup('env', 'GOOGLE_CREDENTIALS') }}"
