@@ -11,6 +11,8 @@
         state: "absent"
         auth_kind: "serviceaccount"
         service_account_contents: "{{ lookup('env', 'GOOGLE_CREDENTIALS') }}"
+        ip_cidr_range: "10.112.217.0/24"
+        network: "projects/ica-shared-vpc-host-project/global/networks/vpc-prod-shared-prod-euw4"
 
     - name: Delete subnet vpc-prod-shared-dev-euw4-aa27-p-ingstream-ver-b36e-subnet-46
       gcp_compute_subnetwork:
@@ -19,3 +21,5 @@
         state: "absent"
         auth_kind: "serviceaccount"
         service_account_contents: "{{ lookup('env', 'GOOGLE_CREDENTIALS') }}"
+        ip_cidr_range: "10.112.106.0/25"
+        network: "projects/ica-shared-vpc-host-project/global/networks/vpc-prod-shared-dev-euw4"
