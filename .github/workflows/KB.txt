@@ -99,3 +99,50 @@ Important Notes
     The workflow uses the GOOGLE_CREDENTIALS secret you added, so no further authentication setup is needed.
     Ensure the service account tied to GOOGLE_CREDENTIALS has permissions to delete subnets (e.g., Compute Network Admin role).
     The workflow_dispatch trigger means you must manually start the workflow, which is safer for destructive actions like this.
+
+Running GitHub Actions from the CLI Without Leaving the CLI
+
+To trigger a GitHub Actions workflow directly from your terminal (CLI) without switching to a graphical interface, you can use the GitHub CLI tool (gh). This is a powerful command-line utility provided by GitHub that allows you to interact with GitHub features, including triggering workflows. Here’s how to do it:
+Prerequisites
+
+    Install GitHub CLI (gh):
+        If you don’t already have the GitHub CLI installed, you can install it using a package manager or by downloading it from the official GitHub CLI release page. For example:
+            On macOS/Linux with Homebrew: brew install gh
+            On Windows with Chocolatey: choco install gh
+            Or follow OS-specific instructions.
+        Verify installation: gh --version
+        Authenticate with GitHub: gh auth login (follow the prompts to log in).
+    Workflow Configuration:
+        Ensure your GitHub Actions workflow is configured to support manual triggering. In your workflow YAML file (e.g., .github/workflows/my_workflow.yml), include the workflow_dispatch event under the on key:
+        yaml
+
+        on:
+          workflow_dispatch:
+        If this isn’t present, you’ll need to add it and push the change to your repository.
+
+Command to Run the Workflow
+
+Use the following command in your terminal to trigger the workflow:
+bash
+gh workflow run <workflow-file> --ref <branch>
+
+    <workflow-file>: The name of your workflow file in the .github/workflows/ directory (e.g., my_workflow.yml).
+    <branch>: The branch where the workflow should run (e.g., main).
+
+Example:
+If your workflow file is .github/workflows/terraform.yml and you want to run it on the main branch, execute:
+bash
+gh workflow run terraform.yml --ref main
+Notes
+
+    You can run this command from the terminal within VS Code, keeping you "within the CLI" as requested.
+    If your workflow requires inputs (defined under workflow_dispatch.inputs in the YAML), specify them with the --field flag, like:
+    bash
+
+gh workflow run terraform.yml --ref main --field key=value
+To find the exact workflow file name, check your repository’s .github/workflows/ directory or list workflows with:
+bash
+
+    gh workflow list
+
+This approach ensures you stay in the CLI environment while leveraging the same GitHub Actions workflows defined in your repository.
