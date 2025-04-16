@@ -109,6 +109,8 @@ Prerequisites
         If you don’t already have the GitHub CLI installed, you can install it using a package manager or by downloading it from the official GitHub CLI release page. For example:
             On macOS/Linux with Homebrew: brew install gh
             On Windows with Chocolatey: choco install gh
+            sudo apt  install gh
+            gh auth login
             Or follow OS-specific instructions.
         Verify installation: gh --version
         Authenticate with GitHub: gh auth login (follow the prompts to log in).
