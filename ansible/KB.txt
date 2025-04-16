@@ -1,0 +1,115 @@
+Creating a Project in Ansible Tower
+
+A project in Ansible Tower is a logical collection of Ansible playbooks. We'll create a project that will contain the playbooks for managing your infrastructure.
+
+    Navigate to Projects:
+        On the left-hand side menu, click on Projects.
+
+    Create a New Project:
+        Click the + button to add a new project.
+        Fill in the necessary details:
+            Name: Give your project a name, e.g., "GCP Infrastructure Management".
+            Description: Optionally, add a description.
+            Organization: Select the appropriate organization.
+            SCM Type: Choose Git (since you mentioned using GitHub).
+            SCM URL: Enter the URL of your GitHub repository containing your playbooks.
+            SCM Branch/Tag/Commit: Specify the branch, tag, or commit if needed.
+            SCM Credential: If your repository is private, select the credential that has access to it.
+
+    Save the Project:
+        Click Save to create the project.
+
+Creating a Playbook
+
+We'll create a playbook that will handle the deletion of the subnets. Here's a basic example of what the playbook might look like:
+
+    Create the Playbook:
+        In your GitHub repository, create a new file named delete_subnets.yml.
+
+    Define the Playbook:
+        Add the following content to delete_subnets.yml:
+Commit and Push:
+
+    Commit the changes and push the playbook to your GitHub repository.
+In this playbook, we're using the lookup('env', 'GOOGLE_CREDENTIALS') to access the GOOGLE_CREDENTIALS environment variable, which should contain your service account credentials.
+
+Step 4: Creating a Job Template in Ansible Tower
+
+    Navigate to Templates:
+        On the left-hand side menu, click on Templates.
+
+    Create a New Job Template:
+        Click the + button and select Job Template.
+        Fill in the necessary details:
+            Name: Give your job template a name, e.g., "Delete GCP Subnets".
+            Job Type: Select Run.
+            Inventory: Select the appropriate inventory.
+            Project: Select the project you created earlier.
+            Playbook: Select delete_subnets.yml.
+            Credentials: Add the credential that has access to your GCP environment.
+
+    Save the Job Template:
+        Click Save to create the job template.
+
+Step 4: Creating Inventory in Ansible Tower
+
+    Navigate to Inventories:
+        On the left-hand side menu, click on Inventories.
+
+    Create a New Inventory:
+        Click the + button to add a new inventory.
+        Fill in the necessary details:
+            Name: Give your inventory a name, e.g., "GCP Inventory".
+            Organization: Select the appropriate organization.
+        Click Save.
+
+    Add Hosts to Inventory:
+        Click on the inventory you just created.
+        Click the Hosts tab.
+        Click the + button to add a new host.
+        Fill in the necessary details:
+            Name: Give your host a name, e.g., "localhost".
+            Variables: Add any necessary variables, e.g., ansible_connection: local.
+        Click Save.
+
+Step 5: Creating Credentials in Ansible Tower
+
+    Navigate to Credentials:
+        On the left-hand side menu, click on Credentials.
+
+    Create a New Credential:
+        Click the + button to add a new credential.
+        Fill in the necessary details:
+            Name: Give your credential a name, e.g., "GCP Service Account".
+            Credential Type: Select Google Compute Engine.
+            Service Account JSON: Paste the JSON content of your service account credentials.
+        Click Save.
+
+Step 6: Linking Playbook to Project
+
+    Navigate to Projects:
+        On the left-hand side menu, click on Projects.
+
+    Update Project:
+        Click on the project you created earlier.
+        Ensure the Source Control URL points to your GitHub repository.
+        Click Sync to pull the latest changes from your repository.
+Step 7: Creating a Job Template in Ansible Tower
+
+    Navigate to Templates:
+        On the left-hand side menu, click on Templates.
+
+    Create a New Job Template:
+        Click the + button and select Job Template.
+        Fill in the necessary details:
+            Name: Give your job template a name, e.g., "Delete GCP Subnets".
+            Job Type: Select Run.
+            Inventory: Select the inventory you created earlier.
+            Project: Select the project you created earlier.
+            Playbook: Select delete_subnets.yml.
+            Credentials: Add the credential you created earlier.
+
+    Save the Job Template:
+        Click Save to create the job template.
+
+
