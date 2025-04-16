@@ -10,7 +10,7 @@
         region: "europe-west4"
         state: "absent"
         auth_kind: "serviceaccount"
-        service_account_file_content: "{{ lookup('env', 'GOOGLE_CREDENTIALS') }}"
+        service_account_contents: "{{ lookup('env', 'GOOGLE_CREDENTIALS') }}"
 
     - name: Delete subnet vpc-prod-shared-dev-euw4-aa27-p-ingstream-ver-b36e-subnet-46
       gcp_compute_subnetwork:
@@ -18,4 +18,4 @@
         region: "europe-west4"
         state: "absent"
         auth_kind: "serviceaccount"
-        service_account_file_content: "{{ lookup('env', 'GOOGLE_CREDENTIALS') }}"
+        service_account_contents: "{{ lookup('env', 'GOOGLE_CREDENTIALS') }}"
