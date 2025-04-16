@@ -1,6 +1,7 @@
 ---
 - name: Delete GCP Subnets
   hosts: localhost
+  connection: local
   gather_facts: no
   tasks:
     - name: Delete subnet vpc-prod-shared-prod-euw4-aa27-p-ingstream-prd-7efb-subnet-23
