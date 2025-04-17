@@ -5,8 +5,9 @@
   gather_facts: no
   tasks:
     - name: Delete subnet vpc-prod-shared-dev-euw4-ad16-np-bank-int-ver-1927-subnet-42
-        name:"vpc-prod-shared-dev-euw4-ad16-np-bank-int-ver-1927-subnet-42"
-        region:"europe-west4"
+      gcp_compute_subnetwork:
+        name: "vpc-prod-shared-dev-euw4-ad16-np-bank-int-ver-1927-subnet-42"
+        region: "europe-west4"
         state: "absent"
         auth_kind: "serviceaccount"
         service_account_contents: "{{ lookup('env', 'GOOGLE_CREDENTIALS') }}"
@@ -16,8 +17,8 @@
 
     - name: Delete subnet vpc-prod-shared-euw1-ad16-np-bank-mvp-dev-59e6-subnet-027
       gcp_compute_subnetwork:
-        name:"vpc-prod-shared-euw1-ad16-np-bank-mvp-dev-59e6-subnet-027"
-        region:"europe-west1"
+        name: "vpc-prod-shared-euw1-ad16-np-bank-mvp-dev-59e6-subnet-027"
+        region: "europe-west1"
         state: "absent"
         auth_kind: "serviceaccount"
         service_account_contents: "{{ lookup('env', 'GOOGLE_CREDENTIALS') }}"
