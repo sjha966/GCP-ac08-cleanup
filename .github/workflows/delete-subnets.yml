@@ -17,11 +17,11 @@ jobs:
         project_id: ica-shared-vpc-host-project
     - name: Delete first subnet
       run: |
-        gcloud compute networks subnets delete vpc-prod-shared-ver-euw4-temp-testsubnet-01 \
+        gcloud compute networks subnets delete vpc-prod-shared-euw4-ad16-np-bank-shr-int-3bef-subnet-025 \
           --region=europe-west4 \
           --project=ica-shared-vpc-host-project
     - name: Delete second subnet
       run: |
-        gcloud compute networks subnets delete vpc-prod-shared-prod-euw4-subnet-0001 \
+        gcloud compute networks subnets delete vpc-prod-shared-prod-euw4-clouddw-subnet-001 \
           --region=europe-west4 \
           --project=ica-shared-vpc-host-project
