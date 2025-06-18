@@ -1,0 +1,33 @@
+name: Delete GCP Connectivity Tests
+
+on:
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  delete-connectivity-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Authenticate with GCP
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+    - name: Set up gcloud CLI
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ica-shared-vpc-host-project
+
+    - name: List and delete all connectivity tests
+      run: |
+        TESTS=$(gcloud network-management connectivity-tests list --format="value(name)")
+        if [ -z "$TESTS" ]; then
+          echo "No connectivity tests found."
+        else
+          for TEST in $TESTS; do
+            echo "Deleting connectivity test: $TEST"
+            gcloud network-management connectivity-tests delete "$TEST" --quiet
+          done
+        fi
