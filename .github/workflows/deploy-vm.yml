@@ -6,14 +6,12 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Deployments/VM # Point to the Deployments folder where vmsetup.tf is located
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: 1.5.7
 
     - name: Authenticate to GCP
       uses: google-github-actions/auth@v1
@@ -25,8 +23,16 @@ jobs:
       with:
         project_id: ica-shared-vpc-host-project
 
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v3 # Align with VPC YAML for consistency
+      with:
+        terraform_version: 1.5.0 # Align with VPC YAML for consistency
+
     - name: Terraform Init
       run: terraform init
+
+    - name: Terraform Validate
+      run: terraform validate # Add validation step
 
     - name: Terraform Plan
       run: terraform plan
